@@ -64,7 +64,10 @@ const Weatherapp = () => {
         else{
             return (
                 <div>
-
+                    <center>
+                    <br/><br/><br/><br/><br/>
+                    <img src="https://i.ibb.co/WPLfFg4/something-went-wrong-2511607-2133695.png" alt="something-went-wrong-2511607-2133695" height="100%" width="100%" border="0"/>
+                    </center>
                 </div>
             )
         }
@@ -109,10 +112,14 @@ const Weatherapp = () => {
         <div>
             <div className="container mt-S">
                 <div className="row justify-content-center">
-                    <div className="col-md-4">
+                    <div className="col-md-8">
                         <div class="card text-white text-center border-0">
-                            
+                        {/* <img
+                            src={`https://source.unsplash.com/1920x1080/?${data.weather[0].main}`}
+                            class='body'
+                        /> */}
                             <div class="card-img-overlay">
+                            <br/><br/><br/><br/>
                                 <form onSubmit={handleSubmit}>
                                     <div class="input-group mb-4 w-100 mx-auto">
                                         <input 
@@ -126,14 +133,22 @@ const Weatherapp = () => {
                                         onChange={(e)=>setInput(e.target.value)}
                                         required
                                         />
-                                            <button type="submit" onclick="changeBG()" class="input-group-text" id="basic-addon2">
+                                            {/* <button type="button"  class="input-group-text" id="basic-addon2">
+                                                <i className='fas fa-location'></i>
+                                            </button> */}
+                                            <button type="submit" onclick={changeBG} class="input-group-text" id="basic-addon2">
                                                 <i className='fas fa-search'></i>
                                             </button>
-                                    <script>
-                                        function changeBG() {
-                                            document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?"+ data.weather[0].name +"')"
-                                        }
-                                    </script>
+                                            <script>
+                                                function changeBG(e) {
+                                                    document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?"+ data.weather[0].main +"')"
+                                                }
+                                            </script>
+                                            {/* <script>
+                                                function getLocation() {
+                                                    console.log("Hello")
+                                                }
+                                            </script> */}
                                     </div>
                                 </form>
                                 <div className='bg-dark bg-opacity-50 py-5'>
@@ -148,8 +163,9 @@ const Weatherapp = () => {
                                     <h1 className='fw-bolder mb-5'>{temp}&deg;C</h1>
                                     <p className='lead fw-bolder mb-0'>{data.weather[0].description}</p>
                                     <p className='lead'>Min: {temp_min}&deg;C  |  Max: {temp_max}&deg;C</p>
-                                    <p className='lead'>Feels like: {feelsLike}&deg;C </p>
-                                    <p className='lead'> Humidity: {data.main.humidity}% | Wind: {data.wind.speed} km/h</p>
+                                    <hr/>
+                                    <p className='lead'>Feels like: {feelsLike}&deg;C | Humidity: {data.main.humidity}%</p>
+                                    <p className='lead'> Pressure: {data.main.pressure} hPa | Wind: {data.wind.speed} km/h</p>
                                     <hr/>
                                     <p className='lead'>Sunrise:  {sunrise} |  Sunset: {sunset}</p>
                                 </div>
@@ -160,6 +176,9 @@ const Weatherapp = () => {
             </div>
         </div>
     );
+    function changeBG() {
+        document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?"+ data.weather[0].name +"')"
+    }
 }
 
 export default Weatherapp;
